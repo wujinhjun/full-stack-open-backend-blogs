@@ -14,6 +14,7 @@ const blogSchema = new mongoose.Schema({
       message: (props) => `The ${props.value} is not a valid likes count`,
     },
   },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 
 blogSchema.set("toJSON", {
