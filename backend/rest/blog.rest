@@ -1,0 +1,46 @@
+GET http://localhost:3003/api/blogs
+
+###
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ind1amluaGp1biIsImlkIjoiNjQ2ZDkxODVjMTlhZTU0YjBjMTBkYmMwIiwiaWF0IjoxNjg0OTA0ODA0fQ.2yoG2oeAJ7Sl2LLsF9L6K3F-VhLHc9jG-GTIcg5p0F4
+
+{
+    "title": "Express and backend",
+    "author": "wujinhjun",
+    "url": "http://wujinhjun.github.io",
+    "likes": 0
+}
+
+### Error token
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI2NiIsInR6cCI5IkpXVCJ9.eyJ1c2VybmFtZSI6Ind1amluaGp1biIsImlkIjoiNjQ2ZDkxODVjMTlhZTU0YjBjMTBkYmMwIiwiaWF0IjoxNjg0OTA0ODA0fQ.2yoG2oeAJ7Sl2LLsF9L6K3F-VhLHc9jG-GTIcg5p0F4
+
+{
+    "title": "Express and backend",
+    "author": "wujinhjun",
+    "url": "http://wujinhjun.github.io",
+    "likes": 0
+}
+
+### Error token delete
+DELETE http://localhost:3003/api/blogs/646d9b98498d959a491a2620
+Authorization: Bearer eyJhbGciOiJIUzI2NiIsInR6cCI5IkpXVCJ9.eyJ1c2VybmFtZSI6Ind1amluaGp1biIsImlkIjoiNjQ2ZDkxODVjMTlhZTU0YjBjMTBkYmMwIiwiaWF0IjoxNjg0OTA0ODA0fQ.2yoG2oeAJ7Sl2LLsF9L6K3F-VhLHc9jG-GTIcg5p0F4
+
+
+### delete
+DELETE http://localhost:3003/api/blogs/646d9b98498d959a491a2620
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ind1amluaGp1biIsImlkIjoiNjQ2ZDkxODVjMTlhZTU0YjBjMTBkYmMwIiwiaWF0IjoxNjg0OTA0ODA0fQ.2yoG2oeAJ7Sl2LLsF9L6K3F-VhLHc9jG-GTIcg5p0F4
+
+
+### Null token
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title": "Express and backend",
+    "author": "wujinhjun",
+    "url": "http://wujinhjun.github.io",
+    "likes": 0
+}
