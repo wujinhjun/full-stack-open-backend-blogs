@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import blogService from "../services/blogs";
 
 const Details = ({ url, likes, author, id, handleLikes, handleRemove }) => {
@@ -17,7 +17,13 @@ const Details = ({ url, likes, author, id, handleLikes, handleRemove }) => {
   );
 };
 
-const Blog = ({ blog, handleUpdate, handleAlertType, handleAlertMsg }) => {
+const Blog = ({
+  blog,
+  handleUpdate,
+  handleAlertType,
+  handleAlertMsg,
+  handleRemoveBlog,
+}) => {
   const [view, setView] = useState(true);
 
   const blogStyle = {
@@ -68,10 +74,18 @@ const Blog = ({ blog, handleUpdate, handleAlertType, handleAlertMsg }) => {
     let msg = "";
 
     try {
-      await blogService.removeBlog(id);
+      if (
+        window.confirm(
+          `Remove blog You're NOT gonna need it! by ${blog.author}`
+        )
+      ) {
+        await blogService.removeBlog(id);
+        handleRemoveBlog(id);
+      }
     } catch (error) {
       type = "error";
       msg = "An Error when remove a blog";
+      console.log(error);
     } finally {
       handleAlertType(type);
       handleAlertMsg(msg);
@@ -100,7 +114,22 @@ const Blog = ({ blog, handleUpdate, handleAlertType, handleAlertMsg }) => {
   );
 };
 
-const BlogList = ({ blogs, handleUpdate, handleAlertType, handleAlertMsg }) => {
+const BlogList = ({
+  blogs: oldBlogs,
+  handleUpdate,
+  handleAlertType,
+  handleAlertMsg,
+}) => {
+  const [blogs, setBlogs] = useState(oldBlogs);
+
+  const handleRemoveBlog = (id) => {
+    setBlogs(blogs.filter((item) => item.id !== id));
+  };
+
+  useEffect(() => {
+    setBlogs(oldBlogs);
+  }, [oldBlogs]);
+
   return (
     <>
       {blogs.map((blog) => (
@@ -110,6 +139,7 @@ const BlogList = ({ blogs, handleUpdate, handleAlertType, handleAlertMsg }) => {
           handleUpdate={handleUpdate}
           handleAlertType={handleAlertType}
           handleAlertMsg={handleAlertMsg}
+          handleRemoveBlog={handleRemoveBlog}
         />
       ))}
     </>
