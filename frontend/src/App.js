@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import BlogList from "./components/Blog";
+import BlogList from "./components/BlogList";
 import blogService from "./services/blogs";
 import loginService from "./services/login";
 import "./App.css";

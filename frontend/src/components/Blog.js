@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import blogService from "../services/blogs";
 
 const Details = ({ url, likes, author, id, handleLikes, handleRemove }) => {
@@ -114,36 +114,4 @@ const Blog = ({
   );
 };
 
-const BlogList = ({
-  blogs: oldBlogs,
-  handleUpdate,
-  handleAlertType,
-  handleAlertMsg,
-}) => {
-  const [blogs, setBlogs] = useState(oldBlogs);
-
-  const handleRemoveBlog = (id) => {
-    setBlogs(blogs.filter((item) => item.id !== id));
-  };
-
-  useEffect(() => {
-    setBlogs(oldBlogs);
-  }, [oldBlogs]);
-
-  return (
-    <>
-      {blogs.map((blog) => (
-        <Blog
-          key={blog.id}
-          blog={blog}
-          handleUpdate={handleUpdate}
-          handleAlertType={handleAlertType}
-          handleAlertMsg={handleAlertMsg}
-          handleRemoveBlog={handleRemoveBlog}
-        />
-      ))}
-    </>
-  );
-};
-
-export default BlogList;
+export default Blog;
